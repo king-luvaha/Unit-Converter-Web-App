@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="conversion-types">
+        <div class="conversion-card">
+            <div class="card-icon">📏</div>
+            <h3>Length Conversion</h3>
+            <p>Convert between millimeters, centimeters, meters, kilometers, inches, feet, yards, and miles.</p>
+            <a href="{{ url_for('length_converter') }}" class="btn">Convert Length</a>
+        </div>
+        
+        <div class="conversion-card">
+            <div class="card-icon">⚖️</div>
+            <h3>Weight Conversion</h3>
+            <p>Convert between milligrams, grams, kilograms, ounces, and pounds.</p>
+            <a href="{{ url_for('weight_converter') }}" class="btn">Convert Weight</a>
+        </div>
+        
+        <div class="conversion-card">
+            <div class="card-icon">🌡️</div>
+            <h3>Temperature Conversion</h3>
+            <p>Convert between Celsius, Fahrenheit, and Kelvin.</p>
+            <a href="{{ url_for('temperature_converter') }}" class="btn">Convert Temperature</a>
+        </div>
+    </div>
+{% endblock %}

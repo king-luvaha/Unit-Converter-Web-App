@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Temperature Conversion</h2>
+    
+    {% if error %}
+        <div class="error-box">
+            <p>{{ error }}</p>
+        </div>
+    {% endif %}
+    
+    <div class="converter-container">
+        <form method="POST" action="{{ url_for('temperature_converter') }}" class="converter-form">
+            <div class="form-group">
+                <label for="value">Value:</label>
+                <input type="number" step="any" id="value" name="value" required
+                       {% if request.method == 'POST' %}value="{{ request.form['value'] }}"{% endif %}>
+            </div>
+
+            <div class="form-group">
+                <label for="from_unit">From:</label>
+                <select id="from_unit" name="from_unit" required>
+                    {% for unit in ['celsius', 'fahrenheit', 'kelvin'] %}
+                        <option value="{{ unit }}" {% if request.method == 'POST' and request.form['from_unit'] == unit %}selected{% endif %}>
+                            {{ unit|capitalize }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="to_unit">To:</label>
+                <select id="to_unit" name="to_unit" required>
+                    {% for unit in ['celsius', 'fahrenheit', 'kelvin'] %}
+                        <option value="{{ unit }}" {% if request.method == 'POST' and request.form['to_unit'] == unit %}selected{% endif %}>
+                            {{ unit|capitalize }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+            
+            <button type="submit" class="btn">Convert</button>
+        </form>
+
+        {% if result is not none %}
+        <div class="result-box">
+            <h3>Conversion Result</h3>
+            <div class="result-value">
+                {{ request.form['value'] }}° {{ request.form['from_unit']|upper }} = 
+                <strong>{{ "%.2f"|format(result) }}° {{ request.form['to_unit']|upper }}</strong>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+{% endblock %}
