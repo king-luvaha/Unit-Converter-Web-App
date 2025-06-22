@@ -2,7 +2,7 @@
 
 A responsive web application that converts between different units of measurement (length, weight, and temperature) built with Python Flask.
 
-![[Unit Converter.gif]]
+![Unit Converter](UC.gif)
 
 ## Features
 
